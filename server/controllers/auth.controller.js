@@ -1,3 +1,4 @@
+import { errorHandler } from "../middleware/error.middleware.js";
 import User from "../models/userModal.js";
 import bcryptjs from "bcryptjs";
 
@@ -9,6 +10,6 @@ export const register = async (req, res, next) => {
     await newUser.save();
     res.status(201).json("User created successfully!");
   } catch (error) {
-    res.status(500).json(error.message);
+    errorHandler(error, req, res);
   }
 };
